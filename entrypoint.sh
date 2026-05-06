@@ -5,6 +5,9 @@ if [ -n "$PORT" ]; then
     sed -i "s/<VirtualHost \*:80>/<VirtualHost *:$PORT>/g" /etc/apache2/sites-available/000-default.conf
 fi
 
+# Ensure Apache configuration is correct
+apache2ctl configtest
+
 # Run migrations
 php artisan migrate --force
 

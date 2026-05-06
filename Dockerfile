@@ -42,8 +42,9 @@ RUN find /var/www/html -type f -exec chmod 644 {} \;
 RUN find /var/www/html -type d -exec chmod 755 {} \;
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Configure Apache to use public directory
+# Configure Apache
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+RUN a2ensite 000-default.conf
 
 # Start Apache and run migrations on startup
 COPY entrypoint.sh /usr/local/bin/
