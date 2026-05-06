@@ -43,8 +43,7 @@ RUN find /var/www/html -type d -exec chmod 755 {} \;
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Configure Apache to use public directory
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 
 # Start Apache and run migrations on startup
 COPY entrypoint.sh /usr/local/bin/
