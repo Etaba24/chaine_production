@@ -52,7 +52,25 @@ In order to ensure that the Laravel community is welcoming to all, please review
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Déploiement sur Render
 
+Ce projet est prêt à être hébergé sur Render avec un déploiement Docker.
+
+1. Crée un compte Render et connecte ton dépôt GitHub `Etaba24/chaine_production`.
+2. Le fichier `render.yaml` à la racine configure un service web Docker pour la branche `main`.
+3. Ajoute les variables d'environnement nécessaires dans le tableau de bord Render :
+   - `APP_KEY`
+   - `APP_ENV=production`
+   - `APP_DEBUG=false`
+   - `DB_CONNECTION`
+   - `DB_HOST`
+   - `DB_PORT`
+   - `DB_DATABASE`
+   - `DB_USERNAME`
+   - `DB_PASSWORD`
+4. Render utilisera le `Dockerfile` du projet et démarrera automatiquement Apache sur le port configuré par Render.
+
+> Important : assure-toi que `storage/` et `bootstrap/cache/` sont écrits par `www-data`, ce que la configuration Docker actuelle prend en charge.
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

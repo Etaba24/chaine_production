@@ -1,0 +1,17 @@
+services:
+  - type: web_service
+    name: chaine-production
+    env: docker
+    repo: Etaba24/chaine_production
+    branch: main
+    autoDeploy: true
+    buildCommand: ''
+    startCommand: ''
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: 'false'
+      - key: PORT
+        value: '10000'
+    plan: starter
