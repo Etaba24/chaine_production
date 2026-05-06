@@ -33,6 +33,9 @@ COPY --from=node-builder /app/public/build ./public/build
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# Create required directories if they don't exist
+RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
+
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
