@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: PHP and Composer
-FROM php:8.3-apache
+FROM php:8.4-apache
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
