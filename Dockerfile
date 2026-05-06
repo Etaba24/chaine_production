@@ -36,8 +36,11 @@ RUN composer install --no-dev --optimize-autoloader
 # Create required directories if they don't exist
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Set permissions for all files and directories
+RUN chown -R www-data:www-data /var/www/html
+RUN find /var/www/html -type f -exec chmod 644 {} \;
+RUN find /var/www/html -type d -exec chmod 755 {} \;
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Configure Apache to use public directory
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
